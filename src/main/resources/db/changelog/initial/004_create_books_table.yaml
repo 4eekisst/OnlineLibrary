@@ -33,8 +33,3 @@ databaseChangeLog:
               - column:
                   name: image
                   type: varchar(255)
-              - column:
-                  name: available_copies
-                  type: bigint
-                  constraints:
-                    nullable: false
