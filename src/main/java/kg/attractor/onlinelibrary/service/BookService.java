@@ -1,5 +1,6 @@
 package kg.attractor.onlinelibrary.service;
 
+import kg.attractor.onlinelibrary.dto.BookDto;
 import kg.attractor.onlinelibrary.enums.BookStatus;
 import kg.attractor.onlinelibrary.model.Book;
 
@@ -10,4 +11,5 @@ public interface BookService {
     List<Book> getBooksByCategory(Long categoryId);
     Book findById(Long id);
     void updateBookStatus(Long bookId, BookStatus status);
+    void addBook(BookDto bookDto);
 }

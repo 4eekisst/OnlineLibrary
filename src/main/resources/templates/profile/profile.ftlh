@@ -8,18 +8,38 @@
             <h1 class="text-center">Профиль пользователя</h1>
         </#if>
 
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">Личная информация</h5>
-                <p><strong>Имя:</strong> <span>${user.name}</span></p>
-                <p><strong>Фамилия:</strong> <span>${user.surname}</span></p>
-                <p><strong>Отчество:</strong> <span>${user.patronymic}</span></p>
-                <p><strong>Адрес:</strong> <span>${user.address}</span></p>
-                <p><strong>Номер паспорта:</strong> <span>${user.passportNumber}</span></p>
-                <p><strong>Номер читательского билета:</strong> <span>${user.readerCardNumber}</span></p>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Личная информация</h5>
+                        <p><strong>Имя:</strong> <span>${user.name}</span></p>
+                        <p><strong>Фамилия:</strong> <span>${user.surname}</span></p>
+                        <p><strong>Отчество:</strong> <span>${user.patronymic}</span></p>
+                        <p><strong>Адрес:</strong> <span>${user.address}</span></p>
+                        <p><strong>Номер паспорта:</strong> <span>${user.passportNumber}</span></p>
+                        <p><strong>Номер читательского билета:</strong> <span>${user.readerCardNumber}</span></p>
+                    </div>
+                </div>
             </div>
-        </div>
 
+            <#if isAdmin>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Добавление категории</h5>
+                            <a href="admin/addCategory" class="btn btn-secondary">Добавить категорию</a>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Добавление новой книги</h5>
+                            <a href="admin/addBook" class="btn btn-secondary">Добавить книгу</a>
+                        </div>
+                    </div>
+                </div>
+            </#if>
+        </div>
         <#if isAdmin>
             <h2 class="mt-4">Список пользователей</h2>
             <#if allUsers?has_content>

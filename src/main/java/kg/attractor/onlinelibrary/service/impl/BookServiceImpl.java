@@ -1,5 +1,6 @@
 package kg.attractor.onlinelibrary.service.impl;
 
+import kg.attractor.onlinelibrary.dto.BookDto;
 import kg.attractor.onlinelibrary.enums.BookStatus;
 import kg.attractor.onlinelibrary.model.Book;
 import kg.attractor.onlinelibrary.model.Category;
@@ -9,7 +10,12 @@ import kg.attractor.onlinelibrary.service.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +61,33 @@ public class BookServiceImpl implements BookService {
     public void updateBookStatus(Long bookId, BookStatus status) {
         Book book = findById(bookId);
         book.setStatus(status);
+        bookRepository.save(book);
+    }
+
+    @Override
+    public void addBook(BookDto bookDto) {
+        Book book = new Book();
+        book.setTitle(bookDto.getTitle());
+        book.setAuthor(bookDto.getAuthor());
+
+        Category category = categoryRepository.findById(bookDto.getCategoryId())
+                .orElseThrow(() -> new RuntimeException("Категория не найдена"));
+        book.setCategory(category);
+
+        MultipartFile imageFile = bookDto.getImage();
+        if (imageFile != null && !imageFile.isEmpty()) {
+            String fileName = imageFile.getOriginalFilename();
+            Path path = Paths.get("src/main/resources/static/images/" + fileName);
+            try {
+                Files.write(path, imageFile.getBytes());
+                book.setImage("images/" + fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Ошибка при сохранении изображения: " + e.getMessage());
+            }
+        }
+
+        book.setStatus(BookStatus.AVAILABLE);
         bookRepository.save(book);
     }
 }
