@@ -11,15 +11,16 @@ VALUES ('Фантастика', 'Книги в жанре фантастики')
        ('Научная литература', 'Книги по науке'),
        ('Приключения', 'Приключенческие романы');
 
-INSERT INTO books (title, author, category_id, image)
-VALUES ('1984', 'Джордж Оруэлл', 1, '1984.jpg'),
-       ('Мастера и Маргарита', 'Михаил Булгаков', 1, 'master_i_margarita.jpg'),
-       ('Краткая история времени', 'Стивен Хокинг', 2, 'history_of_time.jpg'),
-       ('Война и мир', 'Лев Толстой', 3, 'war_and_peace.jpg');
+INSERT INTO books (title, author, category_id, image, status, expected_date)
+VALUES
+    ('1984', 'Джордж Оруэлл', 1, 'images/1984.jpg', 'EXPECTED', '2024-10-15'),
+    ('Мастера и Маргарита', 'Михаил Булгаков', 1, 'images/master_margarita.jpg', 'EXPECTED', '2024-10-20'),
+    ('Краткая история времени', 'Стивен Хокинг', 2, 'images/stiven_xoking.jpg', 'EXPECTED', '2024-10-25'),
+    ('Война и мир', 'Лев Толстой', 3, 'images/war_and_peace.jpg', 'EXPECTED', '2024-10-30');
 
 INSERT INTO book_requests (user_id, book_id, request_date, return_date, status)
-VALUES  (1, 1, '2024-10-01', '2024-10-15', 'ожидает'),
-        (2, 2, '2024-10-02', '2024-10-16', 'возвращен'),
-        (3, 3, '2024-10-03', '2024-10-17', 'ожидает');
+VALUES  (1, 1, '2024-10-01', '2024-10-15', 'EXPECTED'),
+        (2, 2, '2024-10-02', '2024-10-16', 'RETURNED'),
+        (3, 3, '2024-10-03', '2024-10-17', 'EXPECTED');
 
 

@@ -23,17 +23,39 @@
             <#list books as book>
                 <div class="col-md-4">
                     <div class="card mb-4">
+                        <img src="${book.image}" alt="${book.title}" class="card-img-top" style="height: 600px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">${book.title}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">${book.author}</h6>
                             <#if book.category??>
                                 <p class="card-text">Категория: ${book.category.name}</p>
                             </#if>
-                            <a href="#" class="btn btn-primary">Подробнее</a>
+
+                            <p class="card-text">Статус:
+                                <#if book.status == 'EXPECTED'>
+                                    Ожидается к:
+                                    <#if book.expectedDate??>
+                                        ${book.expectedDate?date("dd-MM-yyyy")}
+                                    <#else>
+                                        дата не указана
+                                    </#if>
+                                <#elseif book.status == 'RETURNED'>
+                                    Возвращена
+                                <#elseif book.status == 'OVERDUE'>
+                                    Просрочена
+                                </#if>
+                            </p>
+
+
+                            </p>
+                            <#if book.status == 'AVAILABLE'>
+                                <a href="/requestBook/${book.id}" class="btn btn-primary">Получить</a>
+                            </#if>
                         </div>
                     </div>
                 </div>
             </#list>
+
         </div>
     </div>
     </body>

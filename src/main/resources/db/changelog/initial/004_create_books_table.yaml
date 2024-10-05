@@ -33,3 +33,12 @@ databaseChangeLog:
               - column:
                   name: image
                   type: varchar(255)
+              - column:
+                  name: status
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expected_date
+                  type: date
+
