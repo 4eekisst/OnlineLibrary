@@ -1,5 +1,6 @@
 package kg.attractor.onlinelibrary.service.impl;
 
+import kg.attractor.onlinelibrary.enums.BookStatus;
 import kg.attractor.onlinelibrary.model.Book;
 import kg.attractor.onlinelibrary.model.Category;
 import kg.attractor.onlinelibrary.repository.BookRepository;
@@ -42,5 +43,18 @@ public class BookServiceImpl implements BookService {
             log.info("No books found for category id {}", categoryId);
         }
         return books;
+    }
+
+    @Override
+    public Book findById(Long id) {
+        return bookRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Книга с ID " + id + " не найдена"));
+    }
+
+    @Override
+    public void updateBookStatus(Long bookId, BookStatus status) {
+        Book book = findById(bookId);
+        book.setStatus(status);
+        bookRepository.save(book);
     }
 }

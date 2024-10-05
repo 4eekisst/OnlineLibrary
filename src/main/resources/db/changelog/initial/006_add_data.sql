@@ -16,7 +16,10 @@ VALUES
     ('1984', 'Джордж Оруэлл', 1, 'images/1984.jpg', 'EXPECTED', '2024-10-15'),
     ('Мастера и Маргарита', 'Михаил Булгаков', 1, 'images/master_margarita.jpg', 'EXPECTED', '2024-10-20'),
     ('Краткая история времени', 'Стивен Хокинг', 2, 'images/stiven_xoking.jpg', 'EXPECTED', '2024-10-25'),
-    ('Война и мир', 'Лев Толстой', 3, 'images/war_and_peace.jpg', 'EXPECTED', '2024-10-30');
+    ('Война и мир', 'Лев Толстой', 3, 'images/war_and_peace.jpg', 'EXPECTED', '2024-10-30'),
+    ('Война и мир', 'Лев Толстой', 3, 'images/war_and_peace.jpg', 'AVAILABLE', null);
+
+
 
 INSERT INTO book_requests (user_id, book_id, request_date, return_date, status)
 VALUES  (1, 1, '2024-10-01', '2024-10-15', 'EXPECTED'),

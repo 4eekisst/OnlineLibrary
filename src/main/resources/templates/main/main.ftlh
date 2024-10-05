@@ -30,26 +30,24 @@
                             <#if book.category??>
                                 <p class="card-text">Категория: ${book.category.name}</p>
                             </#if>
-
-                            <p class="card-text">Статус:
-                                <#if book.status == 'EXPECTED'>
-                                    Ожидается к:
-                                    <#if book.expectedDate??>
-                                        ${book.expectedDate?date("dd-MM-yyyy")}
-                                    <#else>
-                                        дата не указана
-                                    </#if>
-                                <#elseif book.status == 'RETURNED'>
-                                    Возвращена
-                                <#elseif book.status == 'OVERDUE'>
-                                    Просрочена
-                                </#if>
-                            </p>
-
-
                             </p>
                             <#if book.status == 'AVAILABLE'>
                                 <a href="/requestBook/${book.id}" class="btn btn-primary">Получить</a>
+                            <#elseif book.status == 'EXPECTED' || book.status == 'RETURNED' || book.status == 'OVERDUE'>
+                                <p class="card-text">
+                                    <#if book.status == 'EXPECTED'>
+                                        Ожидается к :
+                                        <#if book.expectedDate??>
+                                            ${book.expectedDate}
+                                        <#else>
+                                            дата не указана
+                                        </#if>
+                                    <#elseif book.status == 'RETURNED'>
+                                        Возвращена
+                                    <#elseif book.status == 'OVERDUE'>
+                                        Просрочена
+                                    </#if>
+                                </p>
                             </#if>
                         </div>
                     </div>
@@ -60,3 +58,8 @@
     </div>
     </body>
 </@main.layout>
+
+
+
+
+
