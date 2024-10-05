@@ -1,0 +1,44 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: OnlineLibrary
+
+  #  mvc:
+  #    static-path-pattern: classpath:/static/
+
+  #----Databases----#
+  datasource:
+    url: jdbc:h2:./db/OnlineLibrary;AUTO_SERVER=true
+    username: attractor
+    password: esdp
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  liquibase:
+    change-log: classpath:db/changelog/master.yaml
+
+  h2:
+    console:
+      enabled: false
+
+  freemarker:
+    expose-session-attributes: true
+
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        security: info
+
+  file:
+    path: logs
