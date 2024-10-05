@@ -23,7 +23,4 @@ VALUES
 
 INSERT INTO book_requests (user_id, book_id, request_date, return_date, status)
 VALUES  (1, 1, '2024-10-01', '2024-10-15', 'EXPECTED'),
-        (2, 2, '2024-10-02', '2024-10-16', 'RETURNED'),
-        (3, 3, '2024-10-03', '2024-10-17', 'EXPECTED');
-
-
+        (2, 2, '2024-10-02', '2024-10-16', 'EXPECTED');

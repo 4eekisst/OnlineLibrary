@@ -1,6 +1,7 @@
 package kg.attractor.onlinelibrary.service.impl;
 
 import kg.attractor.onlinelibrary.dto.UserDto;
+import kg.attractor.onlinelibrary.dto.UserProfileDto;
 import kg.attractor.onlinelibrary.model.Authority;
 import kg.attractor.onlinelibrary.model.User;
 import kg.attractor.onlinelibrary.repository.AuthorityRepository;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -54,5 +56,20 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
 
         return user.getReaderCardNumber();
+    }
+
+    @Override
+    public List<User> getAllUsers(String adminReaderCardNumber) {
+        return userRepository.findAll().stream()
+                .filter(user -> !user.getReaderCardNumber().equals(adminReaderCardNumber))
+                .toList();
+    }
+
+    @Override
+    public UserProfileDto getUserProfile(String readerCardNumber) {
+        User user = findByReaderCardNumber(readerCardNumber);
+        boolean isAdmin = user.getAuthority().getRole().equals("admin");
+
+        return new UserProfileDto(user, isAdmin);
     }
 }
