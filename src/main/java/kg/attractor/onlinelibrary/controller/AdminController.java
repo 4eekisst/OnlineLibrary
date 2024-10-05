@@ -37,15 +37,22 @@ public class AdminController {
     }
 
     @GetMapping("addBook")
-    public String showAddBookForm(Model model) {
+    public String addBook(Model model) {
         model.addAttribute("book", new BookDto());
         model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("books", bookService.getAllBooks());
         return "admin/addBook";
     }
 
     @PostMapping("addBook")
     public String addBook(@ModelAttribute BookDto bookDto) {
         bookService.addBook(bookDto);
+        return "redirect:/admin/addBook";
+    }
+
+    @PostMapping("deleteBook/{id}")
+    public String deleteBook(@PathVariable Long id) {
+        bookService.deleteBook(id);
         return "redirect:/admin/addBook";
     }
 }

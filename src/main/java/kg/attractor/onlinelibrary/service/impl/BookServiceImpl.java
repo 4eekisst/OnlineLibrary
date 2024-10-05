@@ -90,4 +90,9 @@ public class BookServiceImpl implements BookService {
         book.setStatus(BookStatus.AVAILABLE);
         bookRepository.save(book);
     }
+
+    @Override
+    public void deleteBook(Long id) {
+        bookRepository.deleteById(id);
+    }
 }
