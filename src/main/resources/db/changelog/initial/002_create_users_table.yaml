@@ -49,6 +49,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: enabled
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
                   name: authority_id
                   type: bigint
                   constraints:

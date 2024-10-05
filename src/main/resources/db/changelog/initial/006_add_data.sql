@@ -1,10 +1,10 @@
 INSERT INTO authorities (authority)
 VALUES ('user'), ('admin');
 
-INSERT INTO users (name, surname, patronymic, address, passport_number, reader_card_number, password, authority_id)
-VALUES ('qwe', 'qwe', 'qwe', 'г. Москва, ул. Пушкина, д. 1', '1234567890', 'ACC001', '$2a$12$LLpVcDif4Q/gw1q/pgmPouii/gN/c5PpDeHJBBOiULc/5Idkf3fJ2', 1),
-       ('Адиль', 'Рысбаев', 'Бектурович', 'г. Ош, ул. Крупская, д. 8', '0987654321', 'ACC002', '$2a$12$LLpVcDif4Q/gw1q/pgmPouii/gN/c5PpDeHJBBOiULc/5Idkf3fJ2', 1),
-       ('admin', 'admin', 'admin', 'г. Санкт-Петербург, ул. Невский, д. 3', '1122334455', 'ACC003', '$2a$12$LLpVcDif4Q/gw1q/pgmPouii/gN/c5PpDeHJBBOiULc/5Idkf3fJ2', 2);
+INSERT INTO users (name, surname, patronymic, address, passport_number, reader_card_number, password, enabled, authority_id)
+VALUES ('qwe', 'qwe', 'qwe', 'г. Москва, ул. Пушкина, д. 1', '1234567890', 'ACC001', '$2a$12$LLpVcDif4Q/gw1q/pgmPouii/gN/c5PpDeHJBBOiULc/5Idkf3fJ2', true, 1),
+       ('Адиль', 'Рысбаев', 'Бектурович', 'г. Ош, ул. Крупская, д. 8', '0987654321', 'ACC002', '$2a$12$LLpVcDif4Q/gw1q/pgmPouii/gN/c5PpDeHJBBOiULc/5Idkf3fJ2', true, 1),
+       ('admin', 'admin', 'admin', 'г. Санкт-Петербург, ул. Невский, д. 3', '1122334455', 'ACC003', '$2a$12$LLpVcDif4Q/gw1q/pgmPouii/gN/c5PpDeHJBBOiULc/5Idkf3fJ2', true, 2);
 
 INSERT INTO categories (name, description)
 VALUES ('Фантастика', 'Книги в жанре фантастики'),
