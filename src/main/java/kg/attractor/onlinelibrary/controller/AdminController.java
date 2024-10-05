@@ -1,10 +1,13 @@
 package kg.attractor.onlinelibrary.controller;
 
 import kg.attractor.onlinelibrary.dto.BookDto;
+import kg.attractor.onlinelibrary.dto.UserDto;
 import kg.attractor.onlinelibrary.model.Category;
 import kg.attractor.onlinelibrary.service.BookService;
 import kg.attractor.onlinelibrary.service.CategoryService;
+import kg.attractor.onlinelibrary.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
     private final BookService bookService;
     private final CategoryService categoryService;
+    private final UserService userService;
 
     @GetMapping("addCategory")
     public String category(Model model) {
@@ -54,5 +58,17 @@ public class AdminController {
     public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
         return "redirect:/admin/addBook";
+    }
+
+    @GetMapping("add")
+    public String addAdmin(Model model) {
+        model.addAttribute("userDto", new UserDto());
+        return "admin/addAdmin";
+    }
+
+    @PostMapping("add")
+    public String addAdmin(@ModelAttribute UserDto userDto) {
+        userService.createAdmin(userDto);
+        return "redirect:/profile";
     }
 }

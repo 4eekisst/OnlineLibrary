@@ -59,6 +59,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public String createAdmin(UserDto userDto) {
+        Authority authority = authorityRepository.findByRole("admin")
+                .orElseThrow(() -> new IllegalArgumentException("Authority not found"));
+
+        User user = User.builder()
+                .name(userDto.getName())
+                .surname(userDto.getSurname())
+                .patronymic(userDto.getPatronymic())
+                .address(userDto.getAddress())
+                .passportNumber(userDto.getPassportNumber())
+                .readerCardNumber(generateReaderCardNumber())
+                .password(passwordEncoder.encode(userDto.getPassword()))
+                .enabled(true)
+                .authority(authority)
+                .build();
+
+        userRepository.save(user);
+
+        return user.getReaderCardNumber();
+    }
+
+    @Override
     public List<User> getAllUsers(String adminReaderCardNumber) {
         return userRepository.findAll().stream()
                 .filter(user -> !user.getReaderCardNumber().equals(adminReaderCardNumber))

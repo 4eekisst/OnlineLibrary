@@ -25,16 +25,22 @@
 
             <#if isAdmin>
                 <div class="col-md-4">
-                    <div class="card mb-4">
+                    <div class="card mb-2">
                         <div class="card-body text-center">
                             <h5 class="card-title">Добавление категории</h5>
                             <a href="admin/addCategory" class="btn btn-secondary">Добавить категорию</a>
                         </div>
                     </div>
-                    <div class="card mb-4">
+                    <div class="card mb-2">
                         <div class="card-body text-center">
                             <h5 class="card-title">Добавление новой книги</h5>
                             <a href="admin/addBook" class="btn btn-secondary">Добавить книгу</a>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Добавить нового администратора</h5>
+                            <a href="admin/add" class="btn btn-secondary">Добавить администратора</a>
                         </div>
                     </div>
                 </div>

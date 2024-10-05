@@ -38,6 +38,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/deleteCategory/{id}").hasAuthority("admin")
                         .requestMatchers("/admin/addBook").hasAuthority("admin")
                         .requestMatchers("/admin/deleteBook/{id}").hasAuthority("admin")
+                        .requestMatchers("/admin/add").hasAuthority("admin")
                         .requestMatchers("/requestBook/**").authenticated()
                         .requestMatchers("/profile").authenticated()
                         .anyRequest().permitAll()

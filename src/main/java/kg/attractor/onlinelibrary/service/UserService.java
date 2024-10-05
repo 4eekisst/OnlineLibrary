@@ -9,6 +9,9 @@ import java.util.List;
 public interface UserService {
     User findByReaderCardNumber(String readerCardNumber);
     String create(UserDto userDto);
+
+    String createAdmin(UserDto userDto);
+
     List<User> getAllUsers(String adminReaderCardNumber);
     UserProfileDto getUserProfile(String readerCardNumber);
 }
